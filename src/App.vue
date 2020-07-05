@@ -11,6 +11,10 @@ import Header from './components/Header.vue'
     export default {
         components:{
             appHeader: Header
+        },
+        created(){
+            console.log(this.$store.dispatch("initStocks"))
+            this.$store.dispatch("initStocks")
         }
     }
 </script>
