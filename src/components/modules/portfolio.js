@@ -20,10 +20,15 @@ const mutations = {
     "SELL_STOCKS"(state, order){
         const resp = state.stocks.find(element => element.id == order.stockId)
         if(resp.quantity > order.stockQuantity){
+            console.log(resp)
             resp.quantity -= order.stockQuantity
         }else{
             state.stocks.splice(state.stocks.indexOf(resp), 1)
         }
+    },
+    "SET_PORTFOLIO"(state, portfolio){
+        state.funds = portfolio.funds;
+        state.stocks = portfolio.stocks ? portfolio.stocks : []
     }
 }
 

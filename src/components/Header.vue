@@ -11,7 +11,7 @@
                     <router-link to="/portfolio" activeClass="active" tag="li"><a>Portfolio</a></router-link>
                     <router-link to="/stocks" activeClass="active" tag="li"><a>Stocks</a></router-link>
                 </ul>
-                <strong class="navbar-text navbar-right">Funds: {{ funds }}</strong>
+                <strong class="navbar-text navbar-right">Funds: {{ funds | currency }}</strong>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" @click="endDay">End Day</a></li>
                     <li
@@ -37,12 +37,22 @@
 </template>
 <script>
 export default {
+    data(){
+        return{
+            isDropdownOpen: false
+        }
+    },
     methods:{
         endDay(){
-            
+            this.$store.dispatch("randStocks")
         },
         saveData(){
-
+            const data = {
+                funds: this.$store.getters.funds,
+                stockPortfolio: this.$store.getters.stockPortfolio,
+                stock: this.$store.getters.stock
+            };
+            this.$http.put("data.json", data)
         },
         loadData(){
 

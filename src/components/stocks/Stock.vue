@@ -12,8 +12,8 @@
                     <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success"  @click="buyStock" :disabled="quantity <= 0">
-                        Buy
+                    <button class="btn btn-success"  @click="buyStock" :disabled="insuffFunds || quantity <= 0">
+                        {{ insuffFunds ? "Insufficient" : "Buy"}}
                     </button>
                 </div>
             </div>
@@ -27,6 +27,14 @@ export default {
     data(){
         return{
             quantity: 0
+        }
+    },
+    computed:{
+        funds(){
+            return this.$store.getters.funds
+        },
+        insuffFunds(){
+            return this.quantity * this.stock.price > this.funds
         }
     },
     methods:{

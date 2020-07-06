@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>Home</h1>
-        <h6>Funds | {{funds}}</h6>
+        <h6>Funds | {{funds | currency}}</h6>
     </div>
 </template>
 

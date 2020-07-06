@@ -12,8 +12,8 @@
                     <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
                 </div>
                 <div class="pull-right">
-                    <button class="btn btn-success"  @click="sellStock" :disabled="quantity <= 0">
-                        Sell
+                    <button class="btn btn-success"  @click="sellStock" :disabled="insufQuan || quantity <= 0">
+                        {{ insufQuan ? "Not enough" : "Sell"}}
                     </button>
                 </div>
             </div>
@@ -26,7 +26,13 @@ export default {
     props: ["stock"],
     data(){
         return{
-            quantity: 0
+            quantity: ""
+        }
+    },
+    computed:{
+        insufQuan(){
+            console.log(this.stock)
+            return this.quantity > this.stock.quantity
         }
     },
     methods:{
