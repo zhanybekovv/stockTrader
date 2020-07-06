@@ -31,13 +31,13 @@ export default {
     },
     methods:{
         buyStock(){
-            console.log(typeof(this.quantity))
             const order = {
                 stockQuantity: this.quantity,
                 stockPrice: this.stock.price,
                 stockId: this.stock.id
             }
-            console.log(order)
+            this.$store.dispatch("buyStocks", order)
+            console.log(this.$store.stockPortfolio)
             // console.log(Number.isInteger(parseInt(this.quantity)))   
             this.quantity = 0
         }

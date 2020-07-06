@@ -21,7 +21,7 @@ const actions = {
         commit("RND_STOCKS")
     },
     buyStocks: ({commit}, order) => {
-        commit()
+        commit("BUY_STOCKS", order)
     }
 }
 

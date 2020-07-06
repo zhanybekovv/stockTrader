@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import {routes} from './routes'
 import store from './components/store'
 
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
